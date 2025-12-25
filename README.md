@@ -10,6 +10,7 @@ Types of testing:
 * ***Sanity check:*** A quick, focused check after a small change or bug fix to verify that the core functionality works.
 * ***End-to-End:*** Tests the entire application flow from start to finish as a real user would.
 
+
 * Unit         → Smallest code piece
 * Functional   → Feature works
 * Integration  → Components talk
