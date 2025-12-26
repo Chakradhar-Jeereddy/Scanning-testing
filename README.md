@@ -133,10 +133,19 @@ Create new Quality Gate
 - Quality gate -> Create -> Name: Catalogue, Unlock editing
 - Add conditions for new and overal code
 - Add lines to cover 80%
+- Click three dots and update the new gateway as default
 - Run the pilepline
 
 New code vs Overal code
 ===
 - Overal code = c1
 - Then new code is: c1-c2
+
+Results in console output
+===
+- SonarQube task 'a4f28e1f-695f-4f77-8b01-2ce36b1d9ded' completed. Quality gate is 'ERROR'
+- After removing server.js (SonarQube task '4ac15be5-ed82-432a-8158-a70172359478' completed. Quality gate is 'OK')
+
+
+
 
