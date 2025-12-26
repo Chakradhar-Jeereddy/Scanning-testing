@@ -110,4 +110,33 @@ sonar.sources=.
 sonar.exclusions=Jenkinsfile, Jenkinsfile1, Dockerfile, **/db/**, **/node_modules/**
 ```
 
+SonarQube server pass analysis to jenkins
+===
+- It happens through webhook needs to be created in SonarQube server.
+- Administration -> Configuration -> webhook -> create.
+- Name: Jenkins
+- URL: http://jenkins:8080/sonarqube-webhook
+- Secret: null
+- After code analysis stage, add code for quality gate.
+```
+  stage('Quality Gate') {
+   steps {
+         // Wait for Quality Gate, fail build if needed
+         timeout(time: 1, unit: 'HOURS') {
+         waitForQualityGate abortPipeline: true
+   }
+```
+- It waits for one hour and fail the build if needed.
+
+Create new Quality Gate
+===
+- Quality gate -> Create -> Name: Catalogue, Unlock editing
+- Add conditions for new and overal code
+- Add lines to cover 80%
+- Run the pilepline
+
+New code vs Overal code
+===
+- Overal code = c1
+- Then new code is: c1-c2
 
