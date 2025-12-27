@@ -142,6 +142,15 @@ SonarQube server pass analysis to jenkins
 
 Create new Quality Gate
 ===
+**Quality Gate:**
+  - Analyze the scan report sent by sonar agent from jenkins. Fail the pipeline if the critera doesn't match
+  - Set rules for new and overall code and evaluate the results against it and fail/pass the test.
+  - We immplement rules..0 vulnerabilities, 0 bugs, 0 code smells, security rating A, maintainability rating A,
+  - Reliability rating A, code coverage 80%.
+**Quality Profiles:** Rules for SonarQube while scanning the code. The architects and senior developers implement it
+
+Setup:
+===
 - Quality gate -> Create -> Name: Catalogue, Unlock editing
 - Add conditions for new and overal code
 - Add lines to cover 80%
