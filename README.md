@@ -18,6 +18,18 @@ Types of testing:
 * Sanity       → Quick confidence check
 * E2E          → User jour
 
+Security implementation in Org:
+===
+1. Collected the list of project codes, app codes -> roboshop, catalogue
+2. Enabled sonar scan for them, without applying quality gates to failed the build.
+3. Provided 6 months timeframe to clear High, Critical issues on overall code.
+     * Overall code
+     * New code
+4. One month to clear High, Critical issues on new code.
+5. Anounced that Quality gates will be applied on new code after one month.
+6. It will fail the build if the new code is not good.
+7. Finally it will be enabled on overall code after 6 months.
+
 Test case to check functionality of a login function
 ===
 ```
