@@ -113,7 +113,7 @@ pipeline{
   stage('Trivy image scanning'){
    steps{
     script{
-     sh""
+     sh"""
      trivy image \
      --scanners vuln \
      --severity HIGH,MEDIUM,CRITICAL \
@@ -123,7 +123,7 @@ pipeline{
      --no-progress \
      --format table \
      406682759639.dkr.ecr.us-east-1.amazonaws.com/chakra/catalogue:1.1.0
-     ""
+     """
     }
    }
   }
