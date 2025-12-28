@@ -48,8 +48,7 @@ pipeline{
         waitForQualityGate abortPipeline: true
       }
    }
-  } */
-  /*
+  } 
   stage('Dependabot Security Gate') {
             environment {
                 GITHUB_OWNER = 'Chakradhar-Jeereddy'
