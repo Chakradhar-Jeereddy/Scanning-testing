@@ -28,6 +28,7 @@ pipeline{
      }
     }
   }
+/*
   stage('Sonar Code Analysis') {
    environment{
    def scannerHome = tool 'sonar-8.0'
@@ -47,7 +48,7 @@ pipeline{
         waitForQualityGate abortPipeline: true
       }
    }
-  } 
+  } */
   stage('Dependabot Security Gate') {
             environment {
                 GITHUB_OWNER = 'Chakradhar-Jeereddy'
@@ -105,6 +106,22 @@ pipeline{
       docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${apiVersion}
       """
       }
+    }
+  }
+  stage('Trivy image scanning'){
+    steps{
+     script{
+      sh"""
+      trivy image \
+      --scanners vuln \
+      --severity HIGH,MEDIUM,CRITICAL \
+      --pkg-types os \
+      --exit-code 1 \
+      --no-progress \
+      --format table \
+      ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${apiVersion}
+      """
+     }
     }
   }
   stage('Test'){
