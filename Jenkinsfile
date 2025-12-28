@@ -49,6 +49,7 @@ pipeline{
       }
    }
   } */
+  /*
   stage('Dependabot Security Gate') {
             environment {
                 GITHUB_OWNER = 'Chakradhar-Jeereddy'
@@ -98,6 +99,7 @@ pipeline{
                 }
             }
   }
+  */
   stage('Build catalogue image'){
     steps{
       withAWS(region:'us-east-1',credentials:'aws-ecr') {
@@ -108,6 +110,23 @@ pipeline{
       """
       }
     }
+  }
+  stage('Trivy image scanning'){
+   steps{
+    script{
+     sh""
+     trivy image \
+     --scanners vuln \
+     --severity HIGH,MEDIUM,CRITICAL \
+     --pkg-types os \
+     --exit-code 1 \
+     --skip-db-update \
+     --no-progress \
+     --format table \
+     406682759639.dkr.ecr.us-east-1.amazonaws.com/chakra/catalogue:1.1.0
+     ""
+    }
+   }
   }
   stage('Test'){
     environment{
