@@ -167,6 +167,65 @@ Results in console output
 - SonarQube task 'a4f28e1f-695f-4f77-8b01-2ce36b1d9ded' completed. Quality gate is 'ERROR'
 - After removing server.js (SonarQube task '4ac15be5-ed82-432a-8158-a70172359478' completed. Quality gate is 'OK')
 
+
+**National Vulnerability Database:** US Official organisation
+**Common Vulnerability Exposure ID(CVE):** Maintained by MITRE (non-profitable firm, funded by US Gov)
+- Vendors like RHEL, Oracle..Bounty programs continiously research for weekness in the code and inform MITRE.
+- MITRE assign an ID (CVE-ID) with metadata (Who manages the OS, dependenices, packages?)
+- Which version?, what is the fix?, which application version fixing it? and save it in the NVD.
+
+Scanning tool purpose
+===
+It reads lowlevel and toplevel dependencies.
+
+Redhat, Oracle, Microsoft, Google, Security Research, Bounty Programs, Internship programs, etc..
+
+a ID is allocated to vulnerability
+
+MITRE -> NVD -> CVE-HJFG-1234
+
+metadata
+=========
+who manages that, OS package, app dependency
+fix the criticality
+which version?
+who is the vendor?
+which OS?
+what is the fix? which upcoming version is fixing this
+
+
+Scanning Tools
+===============
+reads our top level and low level dependencies. OS version, library name, version, etc.
+
+NVD responds with known vulnerabilities and remedy fixes..
+
+3 HIGH, 3 CRTICAL, 8 MEDIUM, 9 LOW -> full info
+
+setup a quality gate to filter HIGH, CRITICAL and fail the pipeline
+
+CVE-2025-61882
+
+ATG Patchset Level: R12.ATG_PF.C.delta.10
+
+Impact:
+- Environment uses ATG delta 10.
+- For CVE-2025-61882 mitigation, the required XDO patch is:
+  Patch 38510732:R12.XDO.C (apply_mode=hotpatch)
+
+1. query the dependabot alerts
+2. json response
+3. if high, critical and open then stop the pipeline
+4. if no critical and high and open proceed the pipeline
+
+https://api.github.com/repos/daws-86s/catalogue/vulnerability-alerts
+
+curl -I \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <token>" \
+  https://api.github.com/repos/daws-86s/catalogue/dependabot/alerts
+
+--------------------------------------------------------------------------------------------------------------
 ### Jenkins Setup
 
 Installation commands from Jenkins official doc
